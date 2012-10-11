@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<h2>Code Editor</h2>
+<div style="margin:8px 0;">
+    选择语言：
+    <select id="sltMode">
+        <option value="text/html">html</option>
+        <option value="javascript">javascript</option>
+        <option value="text/x-csharp">C#</option>
+    </select>
+</div>
+
+<div>
+    <textarea id="txtCode" class="editor_zone"></textarea>
+</div>
+
+@section scripts {
+    @Styles.Render("~/Content/codemirror.css")
+    @Scripts.Render("~/Scripts/Codemirror/codemirror.js")
+    @Scripts.Render("~/Scripts/Codemirror/mode/javascript/javascript.js", "~/Scripts/Codemirror/mode/xml/xml.js")
+    <!-- 自动闭合标签js引用 -->
+    @Scripts.Render("~/Scripts/Codemirror/util/closetag.js", "~/Scripts/Codemirror/mode/css/css.js", "~/Scripts/Codemirror/mode/htmlmixed/htmlmixed.js")
+    @Scripts.Render("~/Scripts/Codemirror/mode/clike/clike.js");
+    @Scripts.Render("~/Scripts/editor.js")
+
+    <style type="text/css">
+        .editor_zone
+        {
+            width:100%;
+        
+        }
+    
+        .CodeMirror-scroll {
+          height: auto;
+          min-height:625px;
+          overflow-y: hidden;
+          overflow-x: auto;
+        }
+        
+        .activeline {background: #e8f2ff !important;}
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            initEditor();
+            changeMode($("#sltMode").val());
+            $("#sltMode").change(function () {
+                changeMode(this.value);
+            });
+        })
+    </script>
+}
