@@ -2,6 +2,7 @@
 
 // 设置编辑器的高度
 function initEditor() {
+    CodeMirror.modeURL = "../../Scripts/Codemirror/mode/%N/%N.js";
     editor = CodeMirror.fromTextArea(document.getElementById("txtCode"), {
         //mode: "text/xml",
         mode: "text/x-csharp",
@@ -29,6 +30,15 @@ function initEditor() {
     $(".CodeMirror").css({ "background-color": "white" });
 }
 
-function changeMode(mode) {
+function changeMode(val) {
+    var arrVals = val.split(":"),
+        loadJs = arrVals[0],
+        mode = arrVals[1];
+
     editor.setOption("mode", mode);
+    CodeMirror.autoLoadMode(editor, loadJs);
+
+    if (mode == "text/html") {        
+        CodeMirror.autoLoadMode(editor, "htmlmixed");
+    }
 }

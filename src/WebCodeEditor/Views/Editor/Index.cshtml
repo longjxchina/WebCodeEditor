@@ -11,18 +11,11 @@
     <textarea id="txtCode" class="editor_zone"></textarea>
 </div>
 
-@section scripts {
+@section scripts {   
     @Styles.Render("~/Content/codemirror.css")
     @Scripts.Render("~/Scripts/Codemirror/codemirror.js")
-    @Scripts.Render("~/Scripts/Codemirror/mode/javascript/javascript.js", "~/Scripts/Codemirror/mode/xml/xml.js")
-    <!-- 自动闭合标签js引用 -->
-    @Scripts.Render("~/Scripts/Codemirror/util/closetag.js", "~/Scripts/Codemirror/mode/css/css.js", "~/Scripts/Codemirror/mode/htmlmixed/htmlmixed.js")
-    <!-- C,C++,C# -->
-    @Scripts.Render("~/Scripts/Codemirror/mode/clike/clike.js");
-    <!-- PL/SQL -->
-    @Scripts.Render("~/Scripts/Codemirror/mode/plsql/plsql.js");
-    <!-- CSS -->
-    @Scripts.Render("~/Scripts/Codemirror/mode/css/css.js");
+    @Scripts.Render("~/Scripts/Codemirror/util/loadmode.js")
+    @Scripts.Render("~/Scripts/Codemirror/util/closetag.js", "~/Scripts/Codemirror/mode/xml/xml.js")    
     @Scripts.Render("~/Scripts/editor.js")
 
     <style type="text/css">
