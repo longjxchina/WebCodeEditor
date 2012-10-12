@@ -5,6 +5,7 @@ function initEditor() {
     editor = CodeMirror.fromTextArea(document.getElementById("txtCode"), {
         //mode: "text/xml",
         mode: "text/x-csharp",
+        indentUnit: 4, 
         matchBrackets: true,
         lineNumbers: true,
         
