@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Languages>  
-  <lan value="clike:text/html" order="1">html</lan>
+  <lan value="xml:text/html" order="1">html</lan>
   <lan value="javascript:javascript" order="3">javascript</lan>
-  <lan value="xml:text/x-csharp" order="5">C#</lan>
+  <lan value="clike:text/x-csharp" order="5">C#</lan>
   <lan value="plsql:text/x-plsql" order="7">PL/SQL</lan>
   <lan value="css:text/css" order="9">CSS</lan>
 </Languages>

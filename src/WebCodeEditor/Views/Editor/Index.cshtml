@@ -9,6 +9,8 @@
 
 <div>
     <textarea id="txtCode" class="editor_zone"></textarea>
+
+    <iframe id="previewHtml" style="width:100%;height:auto;border:solid 1px black;min-height:500px;"></iframe>
 </div>
 
 @section scripts {   
@@ -39,12 +41,13 @@
         }
     </style>
 
-    <script type="text/javascript">
+    <script type="text/javascript">        
         $(function () {
             initEditor();
             changeMode($("#Language").val());
             $("#Language").change(function () {
                 changeMode(this.value);
+                updatePreview();
             });
         })
     </script>

@@ -1,11 +1,11 @@
 ﻿var editor;
+var previewDelay;
 
 // 设置编辑器的高度
 function initEditor() {
     CodeMirror.modeURL = "../../Scripts/Codemirror/mode/%N/%N.js";
-    editor = CodeMirror.fromTextArea(document.getElementById("txtCode"), {
-        //mode: "text/xml",
-        mode: "text/x-csharp",
+    editor = CodeMirror.fromTextArea(document.getElementById("txtCode"), {        
+        mode: "text/html",
         indentUnit: 4, 
         matchBrackets: true,
         lineNumbers: true,
@@ -21,7 +21,11 @@ function initEditor() {
             "'>'": function (cm) { cm.closeTag(cm, '>'); },
             "'/'": function (cm) { cm.closeTag(cm, '/'); }
         },
-        wordWrap: true
+        wordWrap: true,
+        onChange: function () {
+            clearTimeout(previewDelay);
+            previewDelay = setTimeout(updatePreview, 300);
+        }
     });
 
     // 高亮显示当前行
@@ -37,8 +41,18 @@ function changeMode(val) {
 
     editor.setOption("mode", mode);
     CodeMirror.autoLoadMode(editor, loadJs);
+}
 
-    if (mode == "text/html") {        
-        CodeMirror.autoLoadMode(editor, "htmlmixed");
+// 预览html
+function updatePreview() {    
+    var mode = editor.getOption("mode");
+
+    if (mode == "text/html") {
+        $("#previewHtml").show();      
+        $("#previewHtml").contents().find("body").html(editor.getValue());
+    }
+    else {
+        $("#previewHtml").hide();
+        $("#previewHtml").contents().find("body").html("");
     }
 }
