@@ -4,13 +4,14 @@
 <h2>Code Editor</h2>
 <div style="margin:8px 0;">
     选择语言：    
-    @Html.DropDownList("Language")
+    @Html.DropDownList("Language")<a href="#previewHtml" class="for_preview">预览</a>
 </div>
 
 <div>
     <textarea id="txtCode" class="editor_zone"></textarea>
 
     <iframe id="previewHtml" style="width:100%;height:auto;border:solid 1px black;min-height:500px;"></iframe>
+    <a href="#" class="for_preview">编辑</a>
 </div>
 
 @section scripts {   
@@ -39,12 +40,20 @@
         {
             background: #e8f2ff !important;
         }
+        
+        a.for_preview 
+        {
+            text-decoration:none;
+            color:Red;
+        }
     </style>
 
-    <script type="text/javascript">        
+    <script type="text/javascript">
         $(function () {
+            var lan = $("#Language").val();
+
             initEditor();
-            changeMode($("#Language").val());
+            changeMode(lan);
             $("#Language").change(function () {
                 changeMode(this.value);
                 updatePreview();

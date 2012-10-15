@@ -41,6 +41,13 @@ function changeMode(val) {
 
     editor.setOption("mode", mode);
     CodeMirror.autoLoadMode(editor, loadJs);
+
+    if (mode === "text/html") {
+        $(".for_preview").show();
+    }
+    else {
+        $(".for_preview").hide();
+    }
 }
 
 // 预览html
